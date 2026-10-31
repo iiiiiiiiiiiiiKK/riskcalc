@@ -31,10 +31,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Approve build scripts (esbuild)
-        run: echo "yes" | pnpm approve-builds
+        run: pnpm install
 
       - name: Typecheck
         run: pnpm exec tsc -b
@@ -69,10 +66,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Approve build scripts (esbuild)
-        run: echo "yes" | pnpm approve-builds
+        run: pnpm install
 
       - name: Install Chromium
         run: pnpm exec playwright install --with-deps chromium
@@ -112,10 +106,7 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Approve build scripts (esbuild)
-        run: echo "yes" | pnpm approve-builds
+        run: pnpm install
 
       - name: Build for the repository sub-path
         run: pnpm build
