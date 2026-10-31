@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --c-bg: 7 8 11;
+  --c-panel: 15 18 24;
+  --c-panel-2: 22 26 35;
+  --c-line: 31 36 48;
+  --c-line-strong: 46 53 71;
+  --c-text: 238 241 247;
+  --c-dim: 154 164 184;
+  --c-muted: 108 118 140;
+  --c-long: 22 199 132;
+  --c-short: 234 57 67;
+  --c-accent: 76 141 255;
+  --c-warn: 240 185 11;
+}
+
+html.light {
+  color-scheme: light;
+  --c-bg: 245 247 250;
+  --c-panel: 255 255 255;
+  --c-panel-2: 242 245 249;
+  --c-line: 224 229 237;
+  --c-line-strong: 203 210 222;
+  --c-text: 15 20 28;
+  --c-dim: 74 84 104;
+  --c-muted: 116 128 148;
+  --c-long: 4 164 105;
+  --c-short: 209 42 56;
+  --c-accent: 32 92 226;
+  --c-warn: 168 122 6;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-txt antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  /* Numbers should never shift width while typing. */
+  input,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background: rgb(var(--c-accent) / 0.32);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--c-line-strong)) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgb(var(--c-line-strong));
+    border-radius: 999px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent) / 0.7);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface;
+  }
+
+  .field-input {
+    /* 16px minimum keeps iOS Safari from zooming into a focused input. */
+    @apply w-full bg-transparent px-3 py-2.5 text-[16px] font-medium text-txt placeholder:text-muted/70 focus:outline-none;
+    line-height: 1.35;
+  }
+
+  .mono {
+    @apply font-mono tabular-nums;
+  }
+}
+
+/* iOS safe areas for the fixed bottom navigation / sticky header. */
+.safe-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
