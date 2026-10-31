@@ -44,7 +44,7 @@ while (tries < MAX_TRIES && !deployed) {
       }
     }
   } catch (error) {
-    console.log(`FETCH_ERROR ${(error as Error).message.slice(0, 80)}`);
+    console.log(`FETCH_ERROR ${String(error.message).slice(0, 80)}`);
   }
 
   if (!deployed) {
@@ -65,5 +65,5 @@ try {
   console.log(`PAGES_URL ${pages.html_url ?? '—'}`);
   console.log(`PAGES_CNAME ${pages.custom_404 ?? false}`);
 } catch (error) {
-  console.log(`PAGES_FETCH_ERROR ${(error as Error).message.slice(0, 80)}`);
+  console.log(`PAGES_FETCH_ERROR ${String(error.message).slice(0, 80)}`);
 }
